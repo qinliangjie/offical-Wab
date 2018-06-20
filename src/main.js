@@ -3,9 +3,17 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import '../static/css/index.css'
+import BackTop from './components/gotoback'
 
 Vue.config.productionTip = false
+BackTop.install = function(Vue) {
+  Vue.component(BackTop.name, BackTop);
+};
 
+export default BackTop;
+
+Vue.use(BackTop)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
