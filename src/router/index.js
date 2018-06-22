@@ -5,9 +5,17 @@ import company from '@/components/company'
 import corporate from '@/components/corporate'
 import products from '@/components/products'
 import joinus from '@/components/joinus'
+
+import Newdetail from '@/components/company/newdetail'
+import Companymy from '@/components/company/mycompany'
 Vue.use(Router)
 
-export default new Router({
+var router = new Router({
+  linkActiveClass: 'active',
+  mode: 'history', 
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  },
   routes: [
     {
       path: '/',
@@ -22,7 +30,23 @@ export default new Router({
     {
       path: '/company',
       name: '公司信息',
-      component: company
+      component: company,
+      children:[{
+        path:'/',
+        redirect: {
+          name:'公司信息'
+        }
+        //name:'schoolLevel',
+        //component:SchoolLevel,
+      },{
+        path: '/company/mycompany',
+        name: '公司信息',
+        component: Companymy
+      },{
+        path: '/company/newdetail',
+        name: '新闻详情',
+        component: Newdetail
+      }]
     },
     {
       path: '/corporate',
@@ -40,4 +64,15 @@ export default new Router({
       component: joinus
     }
   ]
+  
 })
+router.beforeEach((to, from, next) => {
+    if(to.path=='/company/newdetail'){
+      next(()=>{
+         window.location.reload();
+       })
+    }
+    
+    next();
+ })
+export default router;

@@ -4,7 +4,7 @@
                 <div class="head_con">
                     <a href="javascript:;"><h1 class="logo">Tencent</h1></a>
                     <ul class="menu_list">
-                        <router-link to="/" >
+                        <router-link to="/" exact>
                             <li class=""><a href="javascript:;"><i class="c_line"></i>{{header.home}}</a></li>
                         </router-link>
                         <router-link to="/company" >
@@ -71,7 +71,7 @@ export default {
     display: block;
     height: 70px;
     width: 105px;
-    background: url(../../static/images/logo.png) no-repeat;
+    background: url(../../static/img/logo.png) no-repeat;
     text-indent: -9999px;
     overflow: hidden;
     position: absolute;
@@ -108,7 +108,7 @@ export default {
     -webkit-transition: font-weight .3s;
     transition: font-weight .3s;
 }
-.menu_list a.router-link-exact-active a .c_line, .menu_list li:hover a .c_line {
+.menu_list a.active a .c_line, .menu_list li:hover a .c_line {
     display: block;
 }
 .menu_list li a .c_line {

@@ -26,11 +26,11 @@ export default {
     },
     showIcon () {
   //  根据scrollTop的值来判断是否显示返回顶部的icon
-      if (document.documentElement.scrollTop > 500) {
+      if (document.documentElement.scrollTop > 300) {
         this.isShow = true
         this.$el.addEventListener('mouseover', this.addhoverClass)
         this.$el.addEventListener('mouseout', this.addhoverClass)
-      } else if (document.documentElement.scrollTop < 500) {
+      } else if (document.documentElement.scrollTop < 300) {
         this.isShow = false
       }
     },
@@ -83,7 +83,7 @@ export default {
     text-align: center;
     z-index: 999;
     opacity: 1;
-	background: url("../../static/images/gotoback.png") no-repeat;
+	background: url("../../static/img/gotoback.png") no-repeat;
   }
   .hover {
     opacity: .8;

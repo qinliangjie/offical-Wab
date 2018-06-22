@@ -1,8 +1,8 @@
 <template>
 		<div class="footer_wrap">
             <div class="footer">
-                <img src="../../static/images/logo.png" alt="" class="footerImg logoIc" />
-                <img src="../../static/images/morefun.png" alt="" class="footerImg logoMf" />
+                <img src="../../static/img/logo.png" alt="" class="footerImg logoIc" />
+                <img src="../../static/img/morefun.png" alt="" class="footerImg logoMf" />
                 <p>{{footer.text}}</p>
             </div>
             

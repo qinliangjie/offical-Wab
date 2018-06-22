@@ -92,6 +92,7 @@ html {
   width: 100%;
   height: 100%;
   margin: 0 auto;
+  min-width: 1200px;
   position: relative;
 }
 
@@ -253,4 +254,78 @@ a:visited {
     height: 0;
     padding-bottom:20.8%;
     position: relative;
+}
+
+.total_title{
+    font-size: 24px;
+    color: #f08200;
+    font-weight: bold;
+    cursor: default;
+    margin:46px 0 16px 0;
+}
+.total_title span {
+    font-size: 16px;
+    color: #999;
+    font-weight: normal;
+}
+.all_top{
+  width: 1000px;
+  height: 57px;
+  color:white;
+  float: left;
+  background-color: #FFA842;
+  line-height: 57px;
+  padding-left: 32px;
+  font-size: 22px;
+  margin-bottom: 24px
+}
+.all_left{
+  margin-right: 58px;
+  margin-bottom:60px;
+  float: left;
+  width: 471px;  
+}
+.all_right{
+  float: left;
+  margin-bottom:31px;
+  width: 471px; 
+}
+.all_right p{
+  text-indent: 2em
+}
+.all_left:nth-child(even){
+  margin-right: 0px
+}
+.all_left .core_img{
+  width: 471px;
+  height: 201px;
+}
+.all_left .detail_title{
+  font-size: 20px;
+  color: #333;
+  margin:15px 0 0 0;
+}
+.all_left .detail_{
+    text-indent: 2em;
+    font-size: 16px;
+    color: #333;
+    margin-top: 15px;
+    max-height: 166px
+}
+.office_left{
+  margin-right: 40px;
+  margin-bottom:31px;
+  float: left;
+  width: 471px;
+}
+.all_row{
+  margin:0px 0 31px 0;
+  font-size: 16px;
+  color: #333;
+  text-indent: 2em;
+  float: left
+}
+.all_left .office_img{
+  width: 470px;
+  height: 311px
 }

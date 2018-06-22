@@ -2,7 +2,7 @@
   <div id="products" class="index_box">
     <div class="top_wrap">
            <div class="topImg">
-             <img src="../../static/images/topimg.png" alt="">
+             <img src="../../static/img/topimg.png" alt="">
            </div>
            <div class="topmark"></div>
     </div>
@@ -37,25 +37,25 @@ export default {
           id:'1',
           title:'《塔防三国志》',
           content:'由《三国演义》改编，风靡亚洲，荣获千万三国迷一致好评的tower defense巨作现已正式登台！ 穿越千年，您将化身成为汉献帝，不仅可以招揽名士，统将御敌，夜深人静时，还有后宫女将与您嬉戏玩乐唷~ 速来一睹为快吧！',
-          img:'../../static/images/game1.png',
+          img:'../../static/img/game1.png',
           hrefs:'https://www.baidu.com'
         },{
           id:'2',
           title:'《娱乐三国志》',
           content:'由《三国演义》改编，风靡亚洲，荣获千万三国迷一致好评的tower defense巨作现已正式登台！ 穿越千年，您将化身成为汉献帝，不仅可以招揽名士，统将御敌，夜深人静时，还有后宫女将与您嬉戏玩乐唷~ 速来一睹为快吧！',
-          img:'../../static/images/game1.png',
+          img:'../../static/img/game1.png',
           hrefs:'https://www.baidu.com'
         },{
           id:'3',
           title:'《moba三国志》',
           content:'由《三国演义》改编，风靡亚洲，荣获千万三国迷一致好评的tower defense巨作现已正式登台！ 穿越千年，您将化身成为汉献帝，不仅可以招揽名士，统将御敌，夜深人静时，还有后宫女将与您嬉戏玩乐唷~ 速来一睹为快吧！',
-          img:'../../static/images/game1.png',
+          img:'../../static/img/game1.png',
           hrefs:'https://www.baidu.com'
         },{
           id:'3',
           title:'《嘻哈三国志》',
           content:'由《三国演义》改编，风靡亚洲，荣获千万三国迷一致好评的tower defense巨作现已正式登台！ 穿越千年，您将化身成为汉献帝，不仅可以招揽名士，统将御敌，夜深人静时，还有后宫女将与您嬉戏玩乐唷~ 速来一睹为快吧！',
-          img:'../../static/images/game1.png',
+          img:'../../static/img/game1.png',
           hrefs:'https://www.baidu.com'
         }
       ]

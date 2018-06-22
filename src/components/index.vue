@@ -10,9 +10,9 @@
     </div>
     <div class="content">
         <div class="fl companyImg">
-          <img src="../../static/images/index2.png" alt="" class="companyImgUp" />
+          <img src="../../static/img/index2.png" alt="" class="companyImgUp" />
           <div class="markImg"></div>
-          <img src="../../static/images/index1.png" alt="" class="companyImgDown" />
+          <img src="../../static/img/index1.png" alt="" class="companyImgDown" />
         </div>
         <div class="fl companyDom">
           <div class="titleDom">
@@ -31,13 +31,13 @@
             
           </div>
           <ul class="newsul" >
-            <li class="clear" v-for="(item,index) in notic" :key="item.id">
+            <li class="clear" v-for="(item,index) in notic" :key="item.id" v-on:click="gotonew(item.id)">
               <span class="fl ellipsis-one">{{item.title}}</span><span class="fr">{{item.time}}</span>
             </li>
           </ul>
         </div>
         <div class="fl newImg">
-          <img src="../../static/images/index3.png" alt="" />
+          <img src="../../static/img/index3.png" alt="" />
         </div>
         <div class="clear"></div>
         <BackTop ></BackTop><!-- 返回顶部 -->
@@ -84,11 +84,11 @@ export default {
       news:'新闻',
       lbt: [  
         {  
-          'imgs': '../static/images/index1.png'  
+          'imgs': '../../static/img/index1.png'  
         }, {  
-          'imgs': '../static/images/index2.png'  
+          'imgs': '../../static/img/index2.png'  
         }, {  
-          'imgs': '../static/images/index3.png'  
+          'imgs': '../../static/img/index3.png'  
         }  
       ],
       galleryTop :'' 
@@ -108,7 +108,10 @@ export default {
               clickable: true
             }
           })  
-    }  
+    },
+    gotonew(e) {
+      this.$router.push({path:'/company/newdetail',query:{id:e}});
+    }
   }
 }
 </script>
