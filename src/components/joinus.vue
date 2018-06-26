@@ -7,7 +7,7 @@
            <div class="topmark"></div>
     </div>
     <div class="navTitle">
-      <p>{{navTitle}} <span>{{games}}</span></p>
+      <p>{{navTitle}} <span></span></p>
     </div>
     <div class="content">
         <div class="item">
@@ -64,6 +64,7 @@ import {MP} from '../../static/js/map.js'
 export default {
   data () {
     return {
+      langs:'zh',
       activeList:1,
       navTitle:'加入我们',
       hiring:'招聘职位',
@@ -170,6 +171,8 @@ export default {
     }
   },
   mounted:function(){ 
+    this.langs = this.$i18n.locale;
+    console.log(this.langs);
     this.morkList = this.workList1;
     this.$nextTick(function(){  
               var _this = this;  
@@ -196,8 +199,19 @@ export default {
     });
   },
   updated:function(){
-
+      
   },
+  computed: {
+    getUserLangs() {
+      return this.$store.state.langues;
+    }
+  },
+  watch:{
+      getUserLangs(val) {
+        console.log(val)
+      }
+  },
+  
   methods:{ 
     showJob:function(e){
       this.activeList = e;
