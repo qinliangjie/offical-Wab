@@ -7,6 +7,8 @@
            <div class="topmark"></div>
     </div>
     <div class="content">
+        <NavLeft v-bind:navlist="navlist"></NavLeft>
+        <div class="right_part">
         <p class="total_title">
            {{about}}
            <span>{{aboutEn}}</span>
@@ -21,10 +23,11 @@
         <!-- 头部公共样式 -->
         <div class="all_top">
             {{dynamic}}
+            <span v-on:click="gotoList()">{{gotoListdata}}</span>
         </div>
         <div class="article_left">
           <ul>
-            <li class="clear" v-for="(item,index) in newData" :key="item.id">
+            <li class="clear" v-for="(item,index) in newData" :key="item.id" v-on:click="gotonew(item.id)">
               <span class="fl ellipsis-one">{{item.title}}</span><span class="fr">{{item.time}}</span>
             </li>
           </ul>
@@ -42,6 +45,7 @@
               <div class="deve_incident">{{item.incident}}</div>
             </div>
         </div>
+        </div>
         <div class="clear"></div>
         <BackTop ></BackTop>
     </div>
@@ -53,33 +57,51 @@
 export default {
   data () {
     return {
+      navlist:[{
+        name:'公司简介',
+        id:0
+      },{
+        name:'公司动态',
+        id:1
+      },{
+        name:'发展历程',
+        id:2
+      }],
       about:'关于我们',
       aboutEn:'About us',
       dynamic:'公司动态',
+      gotoListdata:'查看全部',
       profile:'公司简介',
       development:'发展历程',
       profileData:{
         content:'苏州爱洛克信息技术有限公司成立于2012年，注册资本1051万。公司总部位于苏州市工业园区，分别在台湾新北、曼谷舍友驻地分公司，创始团队均来自Activision Blizzard等知名游戏公司，平均从业10年以上，有丰富的AAA级游戏制作经验和发行经验。团队曾在中国及全球AppStore, GooglePlay Store成功发行过多款Top 10游戏。'
       },
       newData:[{
+        id:'1',
         title:'这是一则新闻',
         time:'2018-5-5'
       },{
+        id:'2',
         title:'这是一则新闻',
         time:'2018-5-56'
       },{
+        id:'3',
         title:'这是一则新闻',
         time:'2018-5-56'
       },{
+        id:'4',
         title:'这是一则新闻',
         time:'2018-5-56'
       },{
+        id:'5',
         title:'这是一则新闻',
         time:'2018-5-567'
       },{
+        id:'6',
         title:'这是一则新闻',
         time:'2018-5-56'
       },{
+        id:'7',
         title:'这是一则新闻',
         time:'2018-5-56'
       }],
@@ -125,15 +147,27 @@ export default {
 
   },
   methods:{ 
+    gotonew(e) {
+      this.$router.push({path:'/company/newdetail',query:{id:e}});
+      this.$router.go(0)
+    },
+    gotoList() {
+      this.$router.push({path:'/company/newlist'});
+    }
   }
 }
 </script>
 <style scoped>
 #company .content{
-  padding-left: 200px;
   width: 1200px;
   margin:0 auto;
   position: relative;
+}
+
+.right_part{
+  position: relative;
+  float: right;
+  width: 1000px;
 }
 .article_left{
   float: left;
@@ -193,5 +227,13 @@ export default {
   line-height: 70px;
   display: block;
   background: url('../../../static/img/year.png') no-repeat;
+}
+.all_top span{
+  display: block;
+  float: right;
+  cursor: pointer;
+  color: white;
+  margin-right: 20px;
+  font-size: 18px
 }
 </style>

@@ -111,6 +111,7 @@ export default {
     },
     gotonew(e) {
       this.$router.push({path:'/company/newdetail',query:{id:e}});
+      this.$router.go(0)
     }
   }
 }
@@ -118,7 +119,6 @@ export default {
 <style scoped>
 #index .banner_wrap{
     overflow: hidden;
-    background: #0457b7;
     height: 897px;
     margin-bottom: 60px;
 }

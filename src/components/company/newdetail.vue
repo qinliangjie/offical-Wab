@@ -13,9 +13,10 @@
     <div class="content">
       <div class="crumbs">
          <img src="../../../static/img/gap.png" alt="" />
-         <span v-on:click="gotoConpany()">{{crumbs}}</span>
+         <span v-on:click="gotoIndex()">{{indexs}}</span>
          >
-         <span>{{navTitle}}</span>
+         <span v-on:click="gotoConpany()">{{crumbs}}</span>
+         
       </div>
       <div class="airtcle">
         <p class="air_title">
@@ -25,7 +26,7 @@
           {{airtcleData.time}}
           
         </p>
-        <div class="share">
+        <div class="share" v-if="share">
           <!-- 分享 -->
           <span class='st_sharethis_large' displayText='ShareThis'></span>
           <span class='st_facebook_large' displayText='Facebook'></span>
@@ -37,11 +38,7 @@
         <div class="air_detail" v-html="airtcleData.content">
         </div>
       </div>
-
-
-
-      
-        <BackTop ></BackTop><!-- 返回顶部 -->
+      <BackTop ></BackTop><!-- 返回顶部 -->
     </div>
 
   </div>
@@ -52,7 +49,9 @@
 export default {
   data () {
     return {
-      crumbs:'公司信息',
+      share:true,
+      crumbs:'公司动态',
+      indexs:'首页',
       navTitle:'新闻详情',
       games:'News details',
       airtcleData:{
@@ -64,15 +63,20 @@ export default {
     }
   },
   mounted:function(){ 
-    console.log(this.$route.query.id)
   },
   updated:function(){
 
   },
+  created: function(){
+  },
   methods:{ 
     gotoConpany(){
-      this.$router.push({path:'/company'})
+      this.$router.push({path:'/company/newlist'})
+    },
+    gotoIndex(){
+      this.$router.push({path:'/'})
     }
+    
   }
 }
 </script>

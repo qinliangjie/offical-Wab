@@ -6,6 +6,7 @@ import corporate from '@/components/corporate'
 import products from '@/components/products'
 import joinus from '@/components/joinus'
 
+import Newlist from '@/components/company/newlist'
 import Newdetail from '@/components/company/newdetail'
 import Companymy from '@/components/company/mycompany'
 Vue.use(Router)
@@ -43,6 +44,10 @@ var router = new Router({
         name: '公司信息',
         component: Companymy
       },{
+        path: '/company/newlist',
+        name: '新闻列表',
+        component: Newlist
+      },{
         path: '/company/newdetail',
         name: '新闻详情',
         component: Newdetail
@@ -66,13 +71,5 @@ var router = new Router({
   ]
   
 })
-router.beforeEach((to, from, next) => {
-    if(to.path=='/company/newdetail'){
-      next(()=>{
-         window.location.reload();
-       })
-    }
-    
-    next();
- })
+
 export default router;

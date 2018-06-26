@@ -329,3 +329,6 @@ a:visited {
   width: 470px;
   height: 311px
 }
+#map img{
+  max-width: inherit !important;
+}

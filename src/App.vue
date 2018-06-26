@@ -14,10 +14,8 @@
     name: 'app',
     components: {BHeader,Footer},
     mounted:function(){
-    
     },
     methods:{
-      
     }
   }
 </script>

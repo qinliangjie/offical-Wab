@@ -7,6 +7,8 @@
            <div class="topmark"></div>
     </div>
     <div class="content">
+        <NavLeft v-bind:navlist="navlist"></NavLeft>
+        <div class="right_part">
         <p class="total_title">
            {{cortitle}}
            <span>{{titleEn}}</span>
@@ -55,7 +57,7 @@
             <img class="core_img" :src="item.img" alt="" />
             <p class="detail_">{{item.content}}</p>
         </div>
-
+        </div>
         <div class="clear"></div>
         <BackTop ></BackTop>
     </div>
@@ -67,6 +69,19 @@
 export default {
   data () {
     return {
+      navlist:[{
+        name:'核心理念',
+        id:0
+      },{
+        name:'人才发展',
+        id:1
+      },{
+        name:'办公环境',
+        id:2
+      },{
+        name:'员工活动',
+        id:3
+      }],
       cortitle:'企业文化',
       titleEn:'Culture',
       core:'核心理念',
@@ -110,11 +125,16 @@ export default {
 </script>
 <style scoped>
 #corporate .content{
-  padding-left: 200px;
   width: 1200px;
   margin:0 auto;
   position: relative;
 }
+.right_part{
+  position: relative;
+  float: right;
+  width: 1000px;
+}
+
 .total_title{
     font-size: 24px;
     color: #f08200;

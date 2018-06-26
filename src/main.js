@@ -5,15 +5,18 @@ import App from './App'
 import router from './router'
 import '../static/css/index.css'
 import BackTop from './components/gotoback'
+import NavLeft from './components/lifenav'
 
 Vue.config.productionTip = false
 BackTop.install = function(Vue) {
   Vue.component(BackTop.name, BackTop);
 };
 
-export default BackTop;
-
-Vue.use(BackTop)
+NavLeft.install = function(Vue) {
+  Vue.component(NavLeft.name, NavLeft);
+};
+Vue.use(NavLeft);
+Vue.use(BackTop);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

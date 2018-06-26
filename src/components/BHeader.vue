@@ -17,7 +17,7 @@
                             <li><a href="javascript:;"><i class="s_line"></i><i class="c_line"></i>{{header.products}}</a></li>
                         </router-link>
                         <router-link to="/joinus" >
-                            <li><a href="javascript:;"><i class="s_line"></i><i class="c_line"></i>{{header.joinus}}</a></li>
+                            <li v-on:click="reload()"><a href="javascript:;"><i class="s_line"></i><i class="c_line"></i>{{header.joinus}}</a></li>
                         </router-link>
                         <li class="language_1">
                             <a href="javascript:;" class="simple current" change_lang="/zh-cn/">简</a>
@@ -49,7 +49,9 @@ export default {
   	 
   },
   methods:{
-
+    reload:function(){
+        this.$router.go(0)
+    }
   }
 }
 </script>
