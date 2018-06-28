@@ -2,27 +2,28 @@
 		<div class="head_wrap">
             <div class="head">
                 <div class="head_con">
-                    <a href="javascript:;"><h1 class="logo">Tencent</h1></a>
+                    <a href="javascript:;"><h1 class="logo"></h1></a>
                     <ul class="menu_list">
                         <router-link to="/" exact>
-                            <li class=""><a href="javascript:;"><i class="c_line"></i>{{header.home}}</a></li>
+                            <li class=""><a href="javascript:;"><i class="c_line"></i>{{$t('m.header.home')}}
+                            </a></li>
                         </router-link>
                         <router-link to="/company" >
-                            <li><a href="javascript:;"><i class="s_line"></i><i class="c_line"></i>{{header.company}}</a></li>
+                            <li><a href="javascript:;"><i class="s_line"></i><i class="c_line"></i>{{$t('m.header.company')}}</a></li>
                         </router-link>
                         <router-link to="/corporate" >
-                            <li><a href="javascript:;"><i class="s_line"></i><i class="c_line"></i>{{header.corporate}}</a></li>
+                            <li><a href="javascript:;"><i class="s_line"></i><i class="c_line"></i>{{$t('m.header.corporate')}}</a></li>
                         </router-link>
                         <router-link to="/products" >
-                            <li><a href="javascript:;"><i class="s_line"></i><i class="c_line"></i>{{header.products}}</a></li>
+                            <li><a href="javascript:;"><i class="s_line"></i><i class="c_line"></i>{{$t('m.header.products')}}</a></li>
                         </router-link>
                         <router-link to="/joinus" >
-                            <li v-on:click="reload()"><a href="javascript:;"><i class="s_line"></i><i class="c_line"></i>{{header.joinus}}</a></li>
+                            <li v-on:click="reload()"><a href="javascript:;"><i class="s_line"></i><i class="c_line"></i>{{$t('m.header.joinus')}}</a></li>
                         </router-link>
                         <li class="language_1">
-                            <a href="javascript:;" class="simple current" change_lang="/zh-cn/">简</a>
-                            <a href="javascript:;" change_lang="/zh-hk/"><i class="s_line"></i>繁</a>
-                            <a href="javascript:;" change_lang="/en-us/"><i class="s_line"></i>EN</a>
+                            <a href="javascript:;" class="simple" :class="langs == 'zh'? 'simple current': ''" @click="changeLang('zh')">简</a>
+                            <a href="javascript:;" :class="langs == 'tc'? 'current': ''" @click="changeLang('tc')"><i class="s_line"></i>繁</a>
+                            <a href="javascript:;" :class="langs == 'en'? 'current': ''" @click="changeLang('en')"><i class="s_line"></i>EN</a>
                         </li>
                     </ul>
                 </div>
@@ -36,13 +37,8 @@
 export default {
   data () {
   	return{
-  		header:{
-  			home:'首页',
-  			company:'公司信息',
-  			corporate:'企业文化',
-  			products:'产品业务',
-  			joinus:'加入我们'
-  		}
+  		
+        langs:'zh'
   	}
   },
   mounted:function(){
@@ -51,6 +47,11 @@ export default {
   methods:{
     reload:function(){
         this.$router.go(0)
+    },
+    changeLang:function(e){
+        this.langs = e;
+        this.$i18n.locale = this.langs;
+        this.$store.commit('newTitle',this.$i18n.locale)
     }
   }
 }
