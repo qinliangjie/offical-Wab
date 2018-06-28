@@ -1,9 +1,20 @@
 export const m = {
   header:{
-  			home:'首页',
-  			company:'公司信息',
-  			corporate:'企业文化',
-  			products:'产品业务',
-  			joinus:'加入我们'
-  		}
+	  	home:'首页',
+	  	company:'公司信息',
+	  	corporate:'企业文化',
+	  	products:'产品业务',
+	  	joinus:'加入我们'
+  	},
+  home:{
+  	   about:'公司简介',
+  	   pr:'新闻'
+  },
+  company:{
+  	  about:'公司简介',
+  	  pr:'公司动态',
+  	  rd:'发展历程',
+  	  aboutus:'关于我们',
+  	  va:'查看全部'
+  }
 }

@@ -34,15 +34,19 @@
 </template>
 
 <script>
+import {setCookie} from '../assets/js/cookie'
+import {getCookie} from '../assets/js/cookie'
 export default {
   data () {
   	return{
-  		
-        langs:'zh'
+  		langs:'zh'
   	}
   },
   mounted:function(){
-  	 
+     //刷新后初始化语言
+  	 if(getCookie('lang')){
+        this.langs = getCookie('lang')
+     }
   },
   methods:{
     reload:function(){
@@ -50,8 +54,8 @@ export default {
     },
     changeLang:function(e){
         this.langs = e;
+        setCookie('lang',e,1000000000);
         this.$i18n.locale = this.langs;
-        this.$store.commit('newTitle',this.$i18n.locale)
     }
   }
 }

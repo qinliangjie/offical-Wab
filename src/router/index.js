@@ -12,8 +12,7 @@ import Companymy from '@/components/company/mycompany'
 Vue.use(Router)
 
 var router = new Router({
-  linkActiveClass: 'active',
-  mode: 'history', 
+  linkActiveClass: 'active', 
   scrollBehavior (to, from, savedPosition) {
     return { x: 0, y: 0 }
   },

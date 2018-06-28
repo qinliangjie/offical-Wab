@@ -10,20 +10,20 @@
         <NavLeft v-bind:navlist="navlist"></NavLeft>
         <div class="right_part">
         <p class="total_title">
-           {{about}}
+           {{$t('m.company.aboutus')}}
            <span>{{aboutEn}}</span>
         </p>
         <!-- 头部公共样式 -->
         <div class="all_top">
-            {{profile}}
+            {{$t('m.company.about')}}
         </div>
         <div class="all_row">
           {{profileData.content}}
         </div>
         <!-- 头部公共样式 -->
         <div class="all_top">
-            {{dynamic}}
-            <span v-on:click="gotoList()">{{gotoListdata}}</span>
+            {{$t('m.company.pr')}}
+            <span v-on:click="gotoList()">{{$t('m.company.va')}}</span>
         </div>
         <div class="article_left">
           <ul>
@@ -37,7 +37,7 @@
         </div>
         <!-- 头部公共样式 -->
         <div class="all_top">
-            {{development}}
+            {{$t('m.company.rd')}}
         </div>
         <div class="development_">
             <div class="deve_item" v-for="item in deveData">
@@ -58,13 +58,13 @@ export default {
   data () {
     return {
       navlist:[{
-        name:'公司简介',
+        name:'',
         id:0
       },{
-        name:'公司动态',
+        name:'',
         id:1
       },{
-        name:'发展历程',
+        name:'',
         id:2
       }],
       about:'关于我们',
@@ -142,6 +142,9 @@ export default {
     }
   },
   mounted:function(){ 
+    this.navlist[0].name = this.$t('m.company.about');
+    this.navlist[1].name = this.$t('m.company.pr');
+    this.navlist[2].name = this.$t('m.company.rd');
   },
   updated:function(){
 
@@ -154,6 +157,19 @@ export default {
     gotoList() {
       this.$router.push({path:'/company/newlist'});
     }
+  },
+  computed: {
+    getUserLangs() {
+      //vue生命周期计算属性时返回对应的字体以便监听
+      return this.$i18n.locale;
+    }
+  },
+  watch:{
+      getUserLangs(val) {
+        this.navlist[0].name = this.$t('m.company.about');
+        this.navlist[1].name = this.$t('m.company.pr');
+        this.navlist[2].name = this.$t('m.company.rd');
+      }
   }
 }
 </script>

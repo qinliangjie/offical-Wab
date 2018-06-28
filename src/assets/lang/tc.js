@@ -5,5 +5,16 @@ export const m = {
   			corporate:'企業文化',
   			products:'産品業務',
   			joinus:'加入我們'
-  		}
+  		},
+  home:{
+  	   about:'公司簡介',
+  	   pr:'新聞'
+  },
+  company:{
+  	  about:'公司簡介',
+  	  pr:'公司動態',
+  	  rd:'發展歷程',
+  	  aboutus:'關於我們',
+  	  va:'查看全部'
+  }
 }

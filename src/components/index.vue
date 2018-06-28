@@ -16,7 +16,7 @@
         </div>
         <div class="fl companyDom">
           <div class="titleDom">
-            {{aboutus}}
+            {{$t('m.home.about')}}
             <i class="count_down"></i>
             
           </div>
@@ -26,7 +26,7 @@
         </div>
         <div class="fl companyNew">
           <div class="titleDom">
-            {{news}}
+            {{$t('m.home.pr')}}
             <i class="count_down"></i>
             
           </div>
@@ -80,8 +80,6 @@ export default {
               id:'6',
               time:'2015-06-13'
             }],
-      aboutus:'公司介绍',
-      news:'新闻',
       lbt: [  
         {  
           'imgs': '../../static/img/index1.png'  
@@ -95,7 +93,8 @@ export default {
     }
   },
   mounted:function(){
-    this.lunbo() 
+    this.lunbo() ;
+    
   },
   updated:function(){
 

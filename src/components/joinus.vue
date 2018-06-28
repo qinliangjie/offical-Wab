@@ -171,8 +171,8 @@ export default {
     }
   },
   mounted:function(){ 
+    
     this.langs = this.$i18n.locale;
-    console.log(this.langs);
     this.morkList = this.workList1;
     this.$nextTick(function(){  
               var _this = this;  
@@ -201,9 +201,12 @@ export default {
   updated:function(){
       
   },
+  created:function(){
+    
+  },
   computed: {
     getUserLangs() {
-      return this.$store.state.langues;
+      return this.$i18n.locale;
     }
   },
   watch:{
