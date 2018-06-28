@@ -4,11 +4,40 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import VueI18n from 'vue-i18n'
+import axios from 'axios'
 
 import {getCookie} from './assets/js/cookie'
 import '../static/css/index.css'
 import BackTop from './components/gotoback'
 import NavLeft from './components/lifenav'
+
+/* vue配置 */
+Vue.config.debug = process.env.NODE_ENV !== 'production'
+Vue.config.productionTip = false
+
+/* axios配置 */
+axios.defaults.withCredentials = true
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+Vue.prototype.$axios = axios
+
+var querystring = require('querystring');
+
+var baseUrl = "" //接口前缀地址
+/* 
+ * 封装ajax
+ * obj : 全局this
+ * data : ajax传入后台data数据
+ * address : ajax接口地址
+ * fn : 成功返回方法  带参数  obj,data  obj : this data : response
+ * */
+Vue.prototype.postHttp = function(obj,data,address,fn){
+  obj.$axios.post(baseUrl+address,querystring.stringify(data),{withCredentials : true}).then(response => {
+      fn(obj,response.data);
+      
+    },response => {
+      
+  })
+}
 
 
 

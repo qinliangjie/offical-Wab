@@ -7,21 +7,25 @@
            <div class="topmark"></div>
     </div>
     <div class="navTitle">
-      <p>{{navTitle}} <span></span></p>
+      <p>{{$t('m.joinus.ju')}} <span>Join Us</span></p>
     </div>
     <div class="content">
         <div class="item">
-          <p class="top_title">{{hiring}}
+          <p class="top_title">{{$t('m.joinus.ps')}}
             <span></span>
           </p>
           <div class="item_tab">
-              <span>{{job}}： </span>
+              <span>{{$t('m.joinus.pos')}}： </span>
+              <span :class="activeList == '0'? 'active': ''" @click="showJob('0')">{{$t('m.joinus.al')}}</span>
               <span v-for="item in joblist" :class="activeList == item.id? 'active': ''" :key="item.id" @click="showJob(item.id)">{{item.name}}</span>
               <div class="clear"></div>
           </div>
           <table class="item_table">
             <tr>
-              <th v-for="item in tabTh">{{item}}</th>
+              <th>{{$t('m.joinus.ji')}}</th>
+              <th>{{$t('m.joinus.ed')}}</th>
+              <th>{{$t('m.joinus.ex')}}</th>
+              <th>{{$t('m.joinus.de')}}</th>
             </tr>
             <tbody>
               <tr v-for="item in morkList">
@@ -35,7 +39,7 @@
           <div class="clear"></div>
         </div>
         <div class="item">
-          <p class="top_title">{{connectUs}}
+          <p class="top_title">{{$t('m.joinus.cu')}}
             <span></span>
           </p>
           <div class="map">
@@ -46,9 +50,9 @@
             </div>
             <div class="map_right fl">
               <p class="map_title">{{companyName}}</p>
-              <p class="map_p">{{tellphone}}</p>
-              <p class="map_p">{{email}}</p>
-              <p class="map_p">{{address}}</p>
+              <p class="map_p">{{$t('m.joinus.ph')}}： {{tellphone}}</p>
+              <p class="map_p">{{$t('m.joinus.em')}}： {{email}}</p>
+              <p class="map_p">{{$t('m.joinus.ad')}}： {{address}}</p>
             </div>
             <div class="clear"></div>
           </div>
@@ -60,12 +64,13 @@
 </template>
 
 <script>
-import {MP} from '../../static/js/map.js'
+
+//import {MP} from '../../static/js/map.js'
 export default {
   data () {
     return {
       langs:'zh',
-      activeList:1,
+      activeList:0,
       navTitle:'加入我们',
       hiring:'招聘职位',
       connectUs:'联系我们',
@@ -74,9 +79,6 @@ export default {
       tabTh:['职位信息','学历','工作经验','更新时间'],
       morkList:[],
       joblist:[{
-        id:1,
-        name:'全部'
-      },{
         id:2,
         name:'技术'
       },{
@@ -164,39 +166,33 @@ export default {
         update:'2018-06-22'
       }],
       companyName:'苏州爱洛克信息技术有限公司',
-      tellphone:'电话： 0512-66654876',
-      email:'邮箱： hr@iclockwork.com',
-      address:'地址： 苏州市工业园区若水路388号苏州纳米技术国家大学科技园E幢303室',
+      tellphone:'0512-66654876',
+      email:'hr@iclockwork.com',
+      address:'苏州市工业园区若水路388号苏州纳米技术国家大学科技园E幢303室',
       ak:'ueIq0ltF2bWRkHMsQi848Gjbcb7iCKby'
     }
   },
   mounted:function(){ 
-    
     this.langs = this.$i18n.locale;
     this.morkList = this.workList1;
-    this.$nextTick(function(){  
-              var _this = this;  
-              MP(_this.ak).then(BMap => {  
-                var map = new BMap.Map("map");          // 创建地图实例  
-                    var point = new BMap.Point(120.744358,31.263728);  // 创建点坐标  
-                    var marker = new BMap.Marker(point);  // 创建标注
-                    map.addOverlay(marker);  
-                    map.centerAndZoom(point, 17); 
-                    var opts = { 
-                         offset:{
-                          width:0,
-                          height:-30
-                        },
-                        width:100,
-                        height:50,    // 信息窗口高度
-                        title : "苏州爱洛克信息技术有限公司" 
-                    };              // 初始化地图，设置中心点坐标和地图级别  
-                   var infoWindow = new BMap.InfoWindow("地址：苏州市工业园区若水路388号苏州纳米技术国家大学科技园E幢303室", opts);
-                    map.openInfoWindow(infoWindow,point);
-                    marker.setAnimation(BMAP_ANIMATION_BOUNCE);
-                    map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放 
-                    })
-    });
+    var map = new BMap.Map("map");          // 创建地图实例  
+    var point = new BMap.Point(120.744358,31.263728);  // 创建点坐标  
+    var marker = new BMap.Marker(point);  // 创建标注
+        map.addOverlay(marker);  
+        map.centerAndZoom(point, 17); 
+    var opts = { 
+            offset:{
+                  width:0,
+                  height:-30
+                  },
+            width:100,
+            height:50,    // 信息窗口高度
+            title : "苏州爱洛克信息技术有限公司" 
+        };              // 初始化地图，设置中心点坐标和地图级别  
+    var infoWindow = new BMap.InfoWindow("地址：苏州市工业园区若水路388号苏州纳米技术国家大学科技园E幢303室", opts);
+        map.openInfoWindow(infoWindow,point);
+        marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+        map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放 
   },
   updated:function(){
       
@@ -279,7 +275,7 @@ export default {
 }
 .item_tab span{
   display: inline-block;
-  width:48px;
+  width:58px;
   height: 24px;
   text-align: center;
   line-height: 24px;

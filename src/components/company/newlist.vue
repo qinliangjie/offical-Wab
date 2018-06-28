@@ -7,16 +7,16 @@
            <div class="topmark"></div>
     </div>
     <div class="navTitle">
-      <p>{{navTitle}}</p>
+      <p>{{$t('m.company.prr')}}</p>
     </div>
     <div class="content">
         <div class="crumbs">
             <img src="../../../static/img/gap.png" alt="" />
-            <span v-on:click="gotoIndex()">{{index}}</span>
+            <span v-on:click="gotoIndex()">{{$t('m.header.home')}}</span>
             >
-            <span v-on:click="gotoConpany()">{{crumbs}}</span>
+            <span v-on:click="gotoConpany()">{{$t('m.header.company')}}</span>
              >
-            <span>{{navTitle}}</span>
+            <span>{{$t('m.company.prr')}}</span>
         </div>
         <div class="borderbox">
           <div class="item" v-for="item in newList" :key="item.id">
@@ -30,7 +30,7 @@
               </ul>
           </div>
         </div>
-        <div class="load_more">
+        <div class="load_more" v-show="loadAll">
           <div class="loadEffect" v-show="loadings">
                 <span></span>
                 <span></span>
@@ -42,9 +42,9 @@
                 <span></span>
                 
           </div>
-          <div class="inloadEffect" v-show="loadings">{{load}}</div>
+          <div class="inloadEffect" v-show="loadings">{{$t('m.company.loading')}}</div>
           <div class="loadWork" v-show="!loadings" v-on:click="getMore()">
-            {{loadWork}}
+            {{$t('m.company.load')}}
           </div>
           <div class="clear"></div>
         </div>
@@ -59,9 +59,7 @@
 export default {
   data () {
     return {
-      navTitle:'公司动态',
-      crumbs:'公司信息',
-      index:'首页',
+      loadAll:true,
       loadings:false,
       load:'加载中...',
       loadWork:'点击查看更多',

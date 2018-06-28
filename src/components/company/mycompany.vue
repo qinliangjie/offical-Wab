@@ -152,7 +152,6 @@ export default {
   methods:{ 
     gotonew(e) {
       this.$router.push({path:'/company/newdetail',query:{id:e}});
-      this.$router.go(0)
     },
     gotoList() {
       this.$router.push({path:'/company/newlist'});

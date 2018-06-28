@@ -110,7 +110,11 @@ export default {
     },
     gotonew(e) {
       this.$router.push({path:'/company/newdetail',query:{id:e}});
-      this.$router.go(0)
+    },
+    markPost(){
+      // this.postHttp(this,data,'login',function(obj,data){
+            //data是传参，this是当前vue实例，login是接口名，obj是你传入的this也就是当前实例，data是接口返回值
+      // });
     }
   }
 }

@@ -18,7 +18,7 @@
                             <li><a href="javascript:;"><i class="s_line"></i><i class="c_line"></i>{{$t('m.header.products')}}</a></li>
                         </router-link>
                         <router-link to="/joinus" >
-                            <li v-on:click="reload()"><a href="javascript:;"><i class="s_line"></i><i class="c_line"></i>{{$t('m.header.joinus')}}</a></li>
+                            <li><a href="javascript:;"><i class="s_line"></i><i class="c_line"></i>{{$t('m.header.joinus')}}</a></li>
                         </router-link>
                         <li class="language_1">
                             <a href="javascript:;" class="simple" :class="langs == 'zh'? 'simple current': ''" @click="changeLang('zh')">简</a>

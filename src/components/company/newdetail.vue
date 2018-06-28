@@ -7,15 +7,15 @@
            <div class="topmark"></div>
     </div>
     <div class="navTitle">
-      <p>{{navTitle}} <span>{{games}}</span></p>
+      <p>{{$t('m.company.news')}} <span>{{games}}</span></p>
       
     </div>
     <div class="content">
       <div class="crumbs">
          <img src="../../../static/img/gap.png" alt="" />
-         <span v-on:click="gotoIndex()">{{indexs}}</span>
+         <span v-on:click="gotoIndex()">{{$t('m.header.home')}}</span>
          >
-         <span v-on:click="gotoConpany()">{{crumbs}}</span>
+         <span v-on:click="gotoConpany()">{{$t('m.company.prr')}}</span>
          
       </div>
       <div class="airtcle">
@@ -47,8 +47,6 @@ export default {
   data () {
     return {
       share:true,
-      crumbs:'公司动态',
-      indexs:'首页',
       navTitle:'新闻详情',
       games:'News details',
       airtcleData:{
@@ -60,6 +58,8 @@ export default {
     }
   },
   mounted:function(){ 
+    stLight.options({publisher: "5899e9df-0026-43e6-8a6c-cb461a799f5e", doNotHash: false, doNotCopy: false, hashAddressBar: false});
+    stButtons.locateElements();
   },
   updated:function(){
 
@@ -73,7 +73,6 @@ export default {
     gotoIndex(){
       this.$router.push({path:'/'})
     }
-    
   }
 }
 </script>

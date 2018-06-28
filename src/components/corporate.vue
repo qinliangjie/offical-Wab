@@ -10,34 +10,34 @@
         <NavLeft v-bind:navlist="navlist"></NavLeft>
         <div class="right_part">
         <p class="total_title">
-           {{cortitle}}
+           {{$t('m.culture.cu')}}
            <span>{{titleEn}}</span>
         </p>
         <!-- 核心理念头部公共样式 -->
         <div class="all_top">
-            {{core}}
+            {{$t('m.culture.cv')}}
         </div>
         <!-- 公共模块样式 -->
         <div class="all_left">
             <img class="core_img" :src="visionData.img" alt="" />
-            <p class="detail_title">{{vision}}</p>
+            <p class="detail_title">{{$t('m.culture.vs')}}</p>
             <p class="detail_">{{visionData.content}}</p>
         </div>
         <div class="all_left">
             <img class="core_img" :src="missionData.img" alt="" />
-            <p class="detail_title">{{mission}}</p>
+            <p class="detail_title">{{$t('m.culture.ms')}}</p>
             <p class="detail_">{{missionData.content}}</p>
         </div>
         <!-- 人才发展头部公共样式 -->
         <div class="all_top">
-            {{talent}}
+            {{$t('m.culture.td')}}
         </div>
         <div class="all_row">
           {{talentData.content}}
         </div>
         <!-- 办公环境头部公共样式 -->
         <div class="all_top">
-            {{office}}
+            {{$t('m.culture.we')}}
         </div>
         <!-- 公共左边样式 -->
         <div class="office_left">
@@ -50,7 +50,7 @@
 
          <!-- 员工活动头部公共样式 -->
         <div class="all_top">
-            {{staff}}
+            {{$t('m.culture.ea')}}
         </div>
         <!-- 公共模块样式 -->
         <div class="all_left" v-for="item in staffData">
@@ -70,26 +70,22 @@ export default {
   data () {
     return {
       navlist:[{
-        name:'核心理念',
+        name:'',
         id:0
       },{
-        name:'人才发展',
+        name:'',
         id:1
       },{
-        name:'办公环境',
+        name:'',
         id:2
       },{
-        name:'员工活动',
+        name:'',
         id:3
       }],
-      cortitle:'企业文化',
-      titleEn:'Culture',
-      core:'核心理念',
       vision:'愿景',
       mission:'使命',
-      talent:'人才发展',
-      office:'办公环境',
-      staff:'员工活动',
+      titleEn:'Culture',
+      langs:'zh',
       visionData:{
         img:'../../static/img/index4.png',
         content:'苏州爱洛克信息技术有限公司成立于2012年，注册资本1051万。公司总部位于苏州市工业园区，分别在台湾新北、曼谷舍友驻地分公司，创始团队均来自Activision Blizzard等知名游戏公司，平均从业10年以上，有丰富的AAA级游戏制作经验和发行经验。团队曾在中国及全球AppStore, GooglePlay Store成功发行过多款Top 10游戏。'
@@ -115,11 +111,29 @@ export default {
     }
   },
   mounted:function(){ 
+    this.showList()
   },
   updated:function(){
 
   },
   methods:{ 
+    showList:function(){
+      this.navlist[0].name = this.$t('m.culture.cu');
+      this.navlist[1].name = this.$t('m.culture.cv');
+      this.navlist[2].name = this.$t('m.culture.td');
+      this.navlist[3].name = this.$t('m.culture.ea');
+    }
+  },
+  computed: {
+    getUserLangs() {
+      //vue生命周期计算属性时返回对应的字体以便监听
+      return this.$i18n.locale;
+    }
+  },
+  watch:{
+      getUserLangs(val) {
+         this.showList()
+      }
   }
 }
 </script>

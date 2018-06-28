@@ -7,7 +7,7 @@
            <div class="topmark"></div>
     </div>
     <div class="navTitle">
-      <p>{{navTitle}} <span>{{games}}</span></p>
+      <p>{{$t('m.products.gm')}} <span>{{games}}</span></p>
     </div>
     <div class="content">
         <div class="item" v-for="(item,index) in gameDate">
@@ -15,7 +15,7 @@
           <div class="itemDom " :class="{' fr':index%2 != 1}">
             <p class="itemTitle">{{item.title}}</p>
             <p class="itemContent">{{item.content}}</p>
-            <a class="itemA" :href="item.hrefs">{{gotoLineL}}</a>
+            <a class="itemA" :href="item.hrefs">{{$t('m.products.oc')}}</a>
           </div>
           <div class="clear"></div>
         </div>
