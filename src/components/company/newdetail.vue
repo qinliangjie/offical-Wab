@@ -24,17 +24,14 @@
         </p>
         <p class="air_time">
           {{airtcleData.time}}
-          
         </p>
         <div class="share" v-if="share">
-          <!-- 分享 -->
           <span class='st_sharethis_large' displayText='ShareThis'></span>
           <span class='st_facebook_large' displayText='Facebook'></span>
           <span class='st_twitter_large' displayText='Tweet'></span>
           <span class='st_linkedin_large' displayText='LinkedIn'></span>
           <span class='st_email_large' displayText='Email'></span> 
         </div>
-
         <div class="air_detail" v-html="airtcleData.content">
         </div>
       </div>
