@@ -1,7 +1,7 @@
 <template>
   <div class="left_part">
   <ul id="navInside" >
-      <li v-for="item in navlist" :class="activeList == item.id? 'active': ''" :key="item.id" @click="testtest(item.id)">{{item.name}}</li>
+      <li v-for="item in navlist" :class="activeList == item.id? 'active': 'hovera'" :key="item.id" @click="testtest(item.id)">{{item.name}}</li>
   </ul>
   </div>
 </template>
@@ -20,7 +20,8 @@ export default {
     testtest:function(e){
         var olouceng = document.getElementsByClassName("all_top");
         var oNav = document.getElementById("navInside").getElementsByTagName("li");
-            window.scrollTo(0 ,olouceng[e].offsetTop+177);
+        window.scrollTo(0 ,olouceng[e].offsetTop+227);
+
       },
 
     scrollFn:function(){
@@ -32,7 +33,7 @@ export default {
           for(var i=0;i<olouceng.length;i++){
             if(oheight+otop-olouceng[i].offsetTop>oheight/.9){
               for(var j=0;j<oNav.length;j++){
-                oNav[j].className = '';
+                oNav[j].className = 'hovera';
               }
               oNav[i].className = 'active'
             }
@@ -78,7 +79,8 @@ export default {
   color:#333;
   text-align: center;
   line-height: 40px;
-  margin-left: 5px
+  margin-left: 5px;
+  cursor: default;
 }
 .left_part ul li:first-child{
   border-top:1px solid #d6d7dc;
@@ -86,5 +88,9 @@ export default {
 .left_part ul li.active{
   background-color: #F08200;
   color: white
+}
+.hovera:hover{
+  color: #F08200;
+
 }
 </style>

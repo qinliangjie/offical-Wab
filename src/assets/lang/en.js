@@ -47,5 +47,18 @@ export const m = {
   	ph:'Phone',
   	em:'Email',
   	ad:'Address'
+  },
+  footer:{
+    lm:'Learn More',
+    fu:'Follow Us',
+    cu:'Contact Us',
+    li:'Legal Information',
+    lo:'Location',
+    wx:'Weixin',
+    cs:'Customer Service',
+    pa:'Partnership',
+    sa:'Service Agreement',
+    pp:'Privacy Policy',
+    ip:'Intellectual Property'
   }
 }

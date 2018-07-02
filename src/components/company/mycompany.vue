@@ -2,7 +2,7 @@
   <div id="company" class="index_box">
     <div class="top_wrap">
            <div class="topImg">
-             <img src="../../../static/img/topimg.png" alt="">
+             <img :src="lbt[0].images" alt="">
            </div>
            <div class="topmark"></div>
     </div>
@@ -27,13 +27,14 @@
         </div>
         <div class="article_left">
           <ul>
-            <li class="clear" v-for="(item,index) in newData" :key="item.id" v-on:click="gotonew(item.id)">
-              <span class="fl ellipsis-one">{{item.title}}</span><span class="fr">{{item.time}}</span>
+            <li  v-for="(item,index) in newData" :key="item.id" v-on:click="gotonew(item.id)">
+              <span class="fl ellipsis-one">{{item.message_title}}</span><span class="fr">{{item.uptime}}</span>
+              <div class="clear"></div>
             </li>
           </ul>
         </div>
-        <div class="article_right">
-          <img src="../../../static/img/index3.png" alt="" />
+        <div class="article_right" v-if="newimg.length==1">
+          <img :src="newimg[0].images" alt="" />
         </div>
         <!-- 头部公共样式 -->
         <div class="all_top">
@@ -41,8 +42,8 @@
         </div>
         <div class="development_">
             <div class="deve_item" v-for="item in deveData">
-              <span class="deve_year">{{item.year}}</span>
-              <div class="deve_incident">{{item.incident}}</div>
+              <span class="deve_year">{{item.time}}</span>
+              <div class="deve_incident">{{item.details}}</div>
             </div>
         </div>
         </div>
@@ -67,6 +68,8 @@ export default {
         name:'',
         id:2
       }],
+      lbt:[{images:''}],
+      newimg:[],
       about:'关于我们',
       aboutEn:'About us',
       dynamic:'公司动态',
@@ -76,75 +79,15 @@ export default {
       profileData:{
         content:'苏州爱洛克信息技术有限公司成立于2012年，注册资本1051万。公司总部位于苏州市工业园区，分别在台湾新北、曼谷舍友驻地分公司，创始团队均来自Activision Blizzard等知名游戏公司，平均从业10年以上，有丰富的AAA级游戏制作经验和发行经验。团队曾在中国及全球AppStore, GooglePlay Store成功发行过多款Top 10游戏。'
       },
-      newData:[{
-        id:'1',
-        title:'这是一则新闻',
-        time:'2018-5-5'
-      },{
-        id:'2',
-        title:'这是一则新闻',
-        time:'2018-5-56'
-      },{
-        id:'3',
-        title:'这是一则新闻',
-        time:'2018-5-56'
-      },{
-        id:'4',
-        title:'这是一则新闻',
-        time:'2018-5-56'
-      },{
-        id:'5',
-        title:'这是一则新闻',
-        time:'2018-5-567'
-      },{
-        id:'6',
-        title:'这是一则新闻',
-        time:'2018-5-56'
-      },{
-        id:'7',
-        title:'这是一则新闻',
-        time:'2018-5-56'
-      }],
-      deveData:[{
-        id:"1",
-        year:'2011',
-        incident:'推出Worm VS Bird与全球知名发行商Chillingo合作发行全球iOS市场，一起打造Angry Bird后继产品 推出Worm VS Bird与全球知名发行商Chillingo合作发行全球iOS市场，一起打造Angry Bird后继产品'
-      },{
-        id:"2",
-        year:'2012',
-        incident:'推出Worm VS Bird与全球知名发行商Chillingo合作发行全球iOS市场，一起打造Angry Bird后继产品 推出Worm VS Bird与全球知名发行商Chillingo合作发行全球iOS市场，一起打造Angry Bird后继产品'
-      },{
-        id:"3",
-        year:'2013',
-        incident:'推出Worm VS Bird与全球知名发行商Chillingo合作发行全球iOS市场，一起打造Angry Bird后继产品 推出Worm VS Bird与全球知名发行商Chillingo合作发行全球iOS市场，一起打造Angry Bird后继产品'
-      },{
-        id:"4",
-        year:'2014',
-        incident:'推出Worm VS Bird与全球知名发行商Chillingo合作发行全球iOS市场，一起打造Angry Bird后继产品 推出Worm VS Bird与全球知名发行商Chillingo合作发行全球iOS市场，一起打造Angry Bird后继产品'
-      },{
-        id:"5",
-        year:'2015',
-        incident:'推出Worm VS Bird与全球知名发行商Chillingo合作发行全球iOS市场，一起打造Angry Bird后继产品 推出Worm VS Bird与全球知名发行商Chillingo合作发行全球iOS市场，一起打造Angry Bird后继产品推出Worm VS Bird与全球知名发行商Chillingo合作发行全球iOS市场，一起打造Angry Bird后继产品 推出Worm VS Bird与全球知名发行商Chillingo合作发行全球iOS市场，一起打造Angry Bird后继产品'
-      },{
-        id:"6",
-        year:'2016',
-        incident:'推出Worm VS Bird与全球知名发行商Chillingo合作发行全球iOS市场，一起打造Angry Bird后继产品 推出Worm VS Bird与全球知名发行商Chillingo合作发行全球iOS市场，一起打造Angry Bird后继产品'
-      },{
-        id:"7",
-        year:'2017',
-        incident:'推出Worm VS Bird与全球知名发行商Chillingo合作发行全球iOS市场，一起打造Angry Bird后继产品 推出Worm VS Bird与全球知名发行商Chillingo合作发行全球iOS市场，一起打造Angry Bird后继产品'
-      },{
-        id:"8",
-        year:'2018',
-        incident:'推出Worm VS Bird与全球知名发行商Chillingo合作发行全球iOS市场，一起打造Angry Bird后继产品 推出Worm VS Bird与全球知名发行商Chillingo合作发行全球iOS市场，一起打造Angry Bird后继产品'
-      }
-      ]
+      newData:[],
+      deveData:[]
     }
   },
   mounted:function(){ 
     this.navlist[0].name = this.$t('m.company.about');
     this.navlist[1].name = this.$t('m.company.pr');
     this.navlist[2].name = this.$t('m.company.rd');
+    this.markPost(this.$i18n.locale);
   },
   updated:function(){
 
@@ -155,6 +98,40 @@ export default {
     },
     gotoList() {
       this.$router.push({path:'/company/newlist'});
+    },
+    markPost(e){
+      var datas = {
+          lang:e
+      }
+      var datasTwo = {
+          lang:e,
+          img:2
+      }
+      this.getHttp(this,datas,'/front/intro',function(obj,data){
+         obj.profileData.content = data.details
+      });
+      this.getHttp(this,datas,'/front/news',function(obj,data){
+         obj.newData = data
+      });
+      this.getHttp(this,datas,'/front/develop',function(obj,data){
+         obj.deveData = data
+      });
+      this.getHttp(this,datasTwo,'/front/banner',function(obj,data){
+        obj.lbt= data;
+         //丢上服务器之后要删掉，仅测试开发
+         // for(var a in obj.lbt){
+         //     obj.lbt[a].images = obj.inser_src(obj.lbt[a].images);
+         // }
+      });
+      this.getHttp(this,'','/front/indimg',function(obj,data){
+        for(var a in data){
+          //丢上服务器之后要删掉，仅测试开发
+          // data[a].images = obj.inser_src(data[a].images);
+          // if(data[a].mark=='8'){
+          //   obj.newimg.push(data[a]);
+          // }
+        }
+      });
     }
   },
   computed: {
@@ -168,6 +145,7 @@ export default {
         this.navlist[0].name = this.$t('m.company.about');
         this.navlist[1].name = this.$t('m.company.pr');
         this.navlist[2].name = this.$t('m.company.rd');
+        this.markPost(val);
       }
   }
 }
@@ -197,6 +175,9 @@ export default {
     font-size: 18px;
     line-height: 36px;
     cursor: default;
+}
+.article_left ul li:hover{
+  opacity: .6
 }
 .article_left ul li span:first-child {
     max-width: 480px;
@@ -250,5 +231,9 @@ export default {
   color: white;
   margin-right: 20px;
   font-size: 18px
+}
+.topImg img{
+  width: 100%;
+  height:100%;
 }
 </style>

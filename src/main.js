@@ -22,7 +22,7 @@ Vue.prototype.$axios = axios
 
 var querystring = require('querystring');
 
-var baseUrl = "" //接口前缀地址
+var baseUrl = "/" //接口前缀地址
 /* 
  * 封装ajax
  * obj : 全局this
@@ -31,15 +31,24 @@ var baseUrl = "" //接口前缀地址
  * fn : 成功返回方法  带参数  obj,data  obj : this data : response
  * */
 Vue.prototype.postHttp = function(obj,data,address,fn){
-  obj.$axios.post(baseUrl+address,querystring.stringify(data),{withCredentials : true}).then(response => {
+  obj.$axios.post(baseUrl+address,querystring.stringify(data)).then(response => {
       fn(obj,response.data);
       
     },response => {
       
   })
 }
-
-
+Vue.prototype.getHttp = function(obj,data,address,fn){
+    obj.$axios.get(baseUrl+address,{params: data}).then(function(response){
+      fn(obj,response.data)
+    }).catch(function (response){
+      console.log(response);//发生错误时执行的代码
+    });
+}
+//图片地址新增ip,正式服务器可不用
+Vue.prototype.inser_src = function(str){
+  return str.replace('http://qygwaa/public/', 'http://192.168.2.228/qygwaa/public/public/');
+}
 
 
 var s = '';

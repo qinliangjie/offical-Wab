@@ -250,12 +250,14 @@ a:visited {
 }
 .top_wrap{
     overflow: hidden;
-    background: #0457b7;
     height: 0;
     padding-bottom:20.8%;
     position: relative;
 }
-
+.topImg img{
+  width: 100%;
+  height:100%;
+}
 .total_title{
     font-size: 24px;
     color: #f08200;

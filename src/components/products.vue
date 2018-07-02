@@ -2,7 +2,7 @@
   <div id="products" class="index_box">
     <div class="top_wrap">
            <div class="topImg">
-             <img src="../../static/img/topimg.png" alt="">
+             <img :src="lbt[0].images" alt="">
            </div>
            <div class="topmark"></div>
     </div>
@@ -11,11 +11,11 @@
     </div>
     <div class="content">
         <div class="item" v-for="(item,index) in gameDate">
-          <img class="itemImg" :src="item.img" alt="" :class="{' fl':index%2 != 1}" />
+          <img class="itemImg" :src="item.logo" alt="" :class="{' fl':index%2 != 1}" />
           <div class="itemDom " :class="{' fr':index%2 != 1}">
             <p class="itemTitle">{{item.title}}</p>
-            <p class="itemContent">{{item.content}}</p>
-            <a class="itemA" :href="item.hrefs">{{$t('m.products.oc')}}</a>
+            <p class="itemContent">{{item.details}}</p>
+            <a class="itemA" :href="item.link">{{$t('m.products.oc')}}</a>
           </div>
           <div class="clear"></div>
         </div>
@@ -31,42 +31,53 @@ export default {
     return {
       navTitle:'产品业务',
       gotoLineL:'进入官网',
-      games:'games',
+      games:'Games',
+      lbt:[{images:''}],
       gameDate:[
-        {
-          id:'1',
-          title:'《塔防三国志》',
-          content:'由《三国演义》改编，风靡亚洲，荣获千万三国迷一致好评的tower defense巨作现已正式登台！ 穿越千年，您将化身成为汉献帝，不仅可以招揽名士，统将御敌，夜深人静时，还有后宫女将与您嬉戏玩乐唷~ 速来一睹为快吧！',
-          img:'../../static/img/game1.png',
-          hrefs:'https://www.baidu.com'
-        },{
-          id:'2',
-          title:'《娱乐三国志》',
-          content:'由《三国演义》改编，风靡亚洲，荣获千万三国迷一致好评的tower defense巨作现已正式登台！ 穿越千年，您将化身成为汉献帝，不仅可以招揽名士，统将御敌，夜深人静时，还有后宫女将与您嬉戏玩乐唷~ 速来一睹为快吧！',
-          img:'../../static/img/game1.png',
-          hrefs:'https://www.baidu.com'
-        },{
-          id:'3',
-          title:'《moba三国志》',
-          content:'由《三国演义》改编，风靡亚洲，荣获千万三国迷一致好评的tower defense巨作现已正式登台！ 穿越千年，您将化身成为汉献帝，不仅可以招揽名士，统将御敌，夜深人静时，还有后宫女将与您嬉戏玩乐唷~ 速来一睹为快吧！',
-          img:'../../static/img/game1.png',
-          hrefs:'https://www.baidu.com'
-        },{
-          id:'3',
-          title:'《嘻哈三国志》',
-          content:'由《三国演义》改编，风靡亚洲，荣获千万三国迷一致好评的tower defense巨作现已正式登台！ 穿越千年，您将化身成为汉献帝，不仅可以招揽名士，统将御敌，夜深人静时，还有后宫女将与您嬉戏玩乐唷~ 速来一睹为快吧！',
-          img:'../../static/img/game1.png',
-          hrefs:'https://www.baidu.com'
-        }
       ]
     }
   },
   mounted:function(){ 
+    this.markPost(this.$i18n.locale)
   },
   updated:function(){
 
   },
   methods:{ 
+    markPost(e){
+      var datas = {
+          lang:e
+      }
+      var datasTwo = {
+          lang:e,
+          img:4
+      }
+       this.getHttp(this,datasTwo,'/front/banner',function(obj,data){
+        obj.lbt= data;
+         //丢上服务器之后要删掉，仅测试开发
+         // for(var a in obj.lbt){
+         //     obj.lbt[a].images = obj.inser_src(obj.lbt[a].images);
+         // }
+      });
+      this.getHttp(this,datas,'/front/product',function(obj,data){
+         obj.gameDate = data;
+         //丢上服务器之后要删掉，仅测试开发
+         // for(var a in obj.gameDate){
+         //     obj.gameDate[a].logo = obj.inser_src(obj.gameDate[a].logo);
+         // }
+      });
+    }
+  },
+  computed: {
+    getUserLangs() {
+      //vue生命周期计算属性时返回对应的字体以便监听
+      return this.$i18n.locale;
+    }
+  },
+  watch:{
+      getUserLangs(val) {
+         this.markPost(val)
+      }
   }
 }
 </script>

@@ -2,7 +2,7 @@
   <div id="newlist" class="index_box">
     <div class="top_wrap">
            <div class="topImg">
-             <img src="../../../static/img/topimg.png" alt="">
+             <img :src="lbt[0].images" alt="">
            </div>
            <div class="topmark"></div>
     </div>
@@ -19,12 +19,12 @@
             <span>{{$t('m.company.prr')}}</span>
         </div>
         <div class="borderbox">
-          <div class="item" v-for="item in newList" :key="item.id">
+          <div class="item" v-for="item in newlist" :key="item.id">
               <span class="year">{{item.time}}</span>
               <ul>
-                <li v-for="news in item.detail" :key="news.id" v-on:click="gotonew(item.id)">
-                  <span class="news_name ellipsis-one">{{news.name}}</span>
-                  <span class="news_time">{{news.time}}</span>
+                <li v-for="news in item.details" :key="news.id" v-on:click="gotonew(item.id)">
+                  <span class="news_name ellipsis-one">{{news.message_title}}</span>
+                  <span class="news_time">{{news.uptime}}</span>
                   <div class="clear"></div>
                 </li>
               </ul>
@@ -43,7 +43,7 @@
                 
           </div>
           <div class="inloadEffect" v-show="loadings">{{$t('m.company.loading')}}</div>
-          <div class="loadWork" v-show="!loadings" v-on:click="getMore()">
+          <div class="loadWork" v-show="!loadings" v-on:click="getMore(langs)">
             {{$t('m.company.load')}}
           </div>
           <div class="clear"></div>
@@ -59,112 +59,21 @@
 export default {
   data () {
     return {
+      langs:'zh',
       loadAll:true,
+      Pagesize:2,
       loadings:false,
+      lbt:[{images:''}],
       load:'加载中...',
       loadWork:'点击查看更多',
-      newList:[{
-        id:1,
-        time:'2018',
-        detail:[{
-          id:11,
-          name:'这是一条新闻',
-          time:'2015-03-22'
-        },{
-          id:12,
-          name:'这是一条新闻',
-          time:'2015-03-22'
-        },{
-          id:13,
-          name:'这是一条新闻',
-          time:'2015-03-22'
-        },{
-          id:14,
-          name:'这是一条新闻',
-          time:'2015-03-22'
-        },{
-          id:15,
-          name:'这是一条新闻',
-          time:'2015-03-22'
-        }]
-      },{
-        id:2,
-        time:'2017',
-        detail:[{
-          id:21,
-          name:'这是一条新闻',
-          time:'2015-03-22'
-        },{
-          id:22,
-          name:'这是一条新闻',
-          time:'2015-03-22'
-        },{
-          id:23,
-          name:'这是一条新闻',
-          time:'2015-03-22'
-        },{
-          id:24,
-          name:'这是一条新闻',
-          time:'2015-03-22'
-        },{
-          id:25,
-          name:'这是一条新闻',
-          time:'2015-03-22'
-        }]
-      }],
-      morkList:[{
-        id:3,
-        time:'2016',
-        detail:[{
-          id:31,
-          name:'这是一条新闻',
-          time:'2015-03-22'
-        },{
-          id:32,
-          name:'这是一条新闻',
-          time:'2015-03-22'
-        },{
-          id:33,
-          name:'这是一条新闻',
-          time:'2015-03-22'
-        },{
-          id:34,
-          name:'这是一条新闻',
-          time:'2015-03-22'
-        },{
-          id:35,
-          name:'这是一条新闻',
-          time:'2015-03-22'
-        }]
-      },{
-        id:4,
-        time:'2015',
-        detail:[{
-          id:41,
-          name:'这是一条新闻',
-          time:'2015-03-22'
-        },{
-          id:42,
-          name:'这是一条新闻',
-          time:'2015-03-22'
-        },{
-          id:43,
-          name:'这是一条新闻',
-          time:'2015-03-22'
-        },{
-          id:44,
-          name:'这是一条新闻',
-          time:'2015-03-22'
-        },{
-          id:45,
-          name:'这是一条新闻',
-          time:'2015-03-22'
-        }]
-      }
-      ]
+      newlist:[],
+      morkList:[]
+      
+      
     }
   },
   mounted:function(){ 
+    this.markPost(this.$i18n.locale);
   },
   updated:function(){
 
@@ -178,17 +87,63 @@ export default {
     },
     gotonew(e) {
       this.$router.push({path:'/company/newdetail',query:{id:e}});
-      this.$router.go(0)
     },
-    getMore(){
+    getMore(e){
       this.loadings = true;
-      let this_ = this;
-      setTimeout(function(){
-        this_.newList = this_.newList.concat(this_.morkList);
-        this_.loadings = false;
-      },3000)
+      this.Pagesize = this.Pagesize+2;
+      var datas = {
+          lang:e,
+          Pagesize:this.Pagesize
+      }
+      this.getHttp(this,datas,'/front/newsyear',function(obj,data){
+          obj.newlist = [];
+          for(var a in data){
+            obj.newlist.push(data[a])
+          }
+          obj.newlist.reverse();
+          obj.loadings=false;
+          console.log(obj.newlist.length/obj.Pagesize);
+          if(obj.newlist.length/obj.Pagesize<1){
+            obj.loadAll=false
+          }
+      });
+    },
+    markPost(e){
+      var datas = {
+          lang:e,
+          Pagesize:this.Pagesize
+      }
+      var datasTwo = {
+          lang:e,
+          img:2
+      }
+       this.getHttp(this,datasTwo,'/front/banner',function(obj,data){
+        obj.lbt= data;
+         //丢上服务器之后要删掉，仅测试开发
+         // for(var a in obj.lbt){
+         //     obj.lbt[a].images = obj.inser_src(obj.lbt[a].images);
+         // }
+      });
+      this.getHttp(this,datas,'/front/newsyear',function(obj,data){
+          obj.newlist = [];
+          for(var a in data){
+            obj.newlist.push(data[a])
+          }
+          obj.newlist.reverse();
+      });
     }
-  }
+  },
+      computed: {
+        getUserLangs() {
+          return this.$i18n.locale;
+        }
+      },
+      watch:{
+          getUserLangs(val) {
+            this.langs = val;
+            this.markPost(this.langs);
+          }
+      }
 }
 </script>
 <style scoped>
@@ -253,6 +208,9 @@ export default {
     font-size: 18px;
     color: #333;
     line-height: 40px
+}
+#newlist .content .item ul li:hover{
+  opacity: .6
 }
 #newlist .content .item ul li span{
   display: inline-block;

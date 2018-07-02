@@ -2,7 +2,7 @@
   <div id="joinus" class="index_box">
     <div class="top_wrap">
            <div class="topImg">
-             <img src="../../static/img/topimg.png" alt="">
+             <img :src="lbt[0].images" alt="">
            </div>
            <div class="topmark"></div>
     </div>
@@ -16,8 +16,8 @@
           </p>
           <div class="item_tab">
               <span>{{$t('m.joinus.pos')}}： </span>
-              <span :class="activeList == '0'? 'active': ''" @click="showJob('0')">{{$t('m.joinus.al')}}</span>
-              <span v-for="item in joblist" :class="activeList == item.id? 'active': ''" :key="item.id" @click="showJob(item.id)">{{item.name}}</span>
+              <span :class="activeList == '0'? 'active': ''" @click="showJob('0',langs)">{{$t('m.joinus.al')}}</span>
+              <span v-for="item in joblist" :class="activeList == item.id? 'active': ''" :key="item.id" @click="showJob(item.id,langs)">{{item.jobname}}</span>
               <div class="clear"></div>
           </div>
           <table class="item_table">
@@ -31,8 +31,8 @@
               <tr v-for="item in morkList">
                 <td>{{item.name}}</td>
                 <td>{{item.education}}</td>
-                <td>{{item.experience}}</td>
-                <td>{{item.update}}</td>
+                <td>{{item.work}}</td>
+                <td>{{item.uptime}}</td>
               </tr>
             </tbody>
           </table>
@@ -70,111 +70,27 @@ export default {
   data () {
     return {
       langs:'zh',
-      activeList:0,
+      activeList:'0',
       navTitle:'加入我们',
+      lbt:[{images:''}],
       hiring:'招聘职位',
       connectUs:'联系我们',
       games:'Join Us',
       job:'职位',
       tabTh:['职位信息','学历','工作经验','更新时间'],
       morkList:[],
-      joblist:[{
-        id:2,
-        name:'技术'
-      },{
-        id:3,
-        name:'设计'
-      },{
-        id:4,
-        name:'运营'
-      }],
-      workList1:[{
-        id:1,
-        name:'前端工程师1',
-        education:'不限',
-        experience:'不限',
-        update:'2018-06-22'
-      },{
-        id:2,
-        name:'前端工程师2',
-        education:'不限',
-        experience:'不限',
-        update:'2018-06-22'
-      },{
-        id:3,
-        name:'前端工程师3',
-        education:'不限',
-        experience:'不限',
-        update:'2018-06-22'
-      }
-      ],
-      workList2:[{
-        id:1,
-        name:'前端工程师4',
-        education:'不限',
-        experience:'不限',
-        update:'2018-06-22'
-      },{
-        id:2,
-        name:'前端工程师5',
-        education:'不限',
-        experience:'不限',
-        update:'2018-06-22'
-      },{
-        id:3,
-        name:'前端工程师6',
-        education:'不限',
-        experience:'不限',
-        update:'2018-06-22'
-      }],
-      workList3:[{
-        id:1,
-        name:'前端工程师6',
-        education:'不限',
-        experience:'不限',
-        update:'2018-06-22'
-      },{
-        id:2,
-        name:'前端工程师7',
-        education:'不限',
-        experience:'不限',
-        update:'2018-06-22'
-      },{
-        id:3,
-        name:'前端工程师9',
-        education:'不限',
-        experience:'不限',
-        update:'2018-06-22'
-      }],
-      workList4:[{
-        id:1,
-        name:'前端工程师8',
-        education:'不限',
-        experience:'不限',
-        update:'2018-06-22'
-      },{
-        id:2,
-        name:'前端工程师9',
-        education:'不限',
-        experience:'不限',
-        update:'2018-06-22'
-      },{
-        id:3,
-        name:'前端工程师0',
-        education:'不限',
-        experience:'不限',
-        update:'2018-06-22'
-      }],
-      companyName:'苏州爱洛克信息技术有限公司',
-      tellphone:'0512-66654876',
-      email:'hr@iclockwork.com',
-      address:'苏州市工业园区若水路388号苏州纳米技术国家大学科技园E幢303室',
+      joblist:[],
+      companyName:'',
+      tellphone:'',
+      email:'',
+      address:'',
       ak:'ueIq0ltF2bWRkHMsQi848Gjbcb7iCKby'
     }
   },
   mounted:function(){ 
     this.langs = this.$i18n.locale;
-    this.morkList = this.workList1;
+    this.markPost(this.langs,this.activeList);
+    this.showJob(this.activeList,this.langs);
     var map = new BMap.Map("map");          // 创建地图实例  
     var point = new BMap.Point(120.744358,31.263728);  // 创建点坐标  
     var marker = new BMap.Marker(point);  // 创建标注
@@ -207,24 +123,48 @@ export default {
   },
   watch:{
       getUserLangs(val) {
-        console.log(val)
+        this.langs = val;
+        this.markPost(this.langs,this.activeList);
+        this.showJob(this.activeList,this.langs);
       }
   },
   
   methods:{ 
-    showJob:function(e){
-      this.activeList = e;
-      switch(e){
-        case 1:this.morkList = this.workList1;
-        break;
-        case 2:this.morkList = this.workList2;
-        break;
-        case 3:this.morkList = this.workList3;
-        break;
-        case 4:this.morkList = this.workList4;
-        break;
+    markPost(e){
+      var datas = {
+          lang:e
       }
+      this.getHttp(this,datas,'/front/jobtype',function(obj,data){
+         obj.joblist = data;
+      });
+      this.getHttp(this,datas,'/front/relation',function(obj,data){
+         obj.email = data.email;
+         obj.tellphone = data.phone;
+         obj.address = data.address;
+         obj.companyName = data.name
+      });
       
+    },
+    showJob(e,a){
+      var datas = {
+          lang:a,
+          id:e
+      }
+      var datasTwo = {
+          lang:e,
+          img:5
+      }
+       this.getHttp(this,datasTwo,'/front/banner',function(obj,data){
+        obj.lbt= data;
+         //丢上服务器之后要删掉，仅测试开发
+         // for(var a in obj.lbt){
+         //     obj.lbt[a].images = obj.inser_src(obj.lbt[a].images);
+         // }
+      });
+      this.activeList = e;
+      this.getHttp(this,datas,'/front/job',function(obj,data){
+         obj.morkList = data;
+      });
     }
   }
 }

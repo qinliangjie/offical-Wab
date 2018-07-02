@@ -1,8 +1,8 @@
 <template>
   <div id="corporate" class="index_box">
-    <div class="top_wrap">
+    <div class="top_wrap" >
            <div class="topImg">
-             <img src="../../static/img/topimg.png" alt="">
+             <img :src="lbt[0].images" alt="">
            </div>
            <div class="topmark"></div>
     </div>
@@ -19,21 +19,21 @@
         </div>
         <!-- 公共模块样式 -->
         <div class="all_left">
-            <img class="core_img" :src="visionData.img" alt="" />
+            <img class="core_img" :src="visionData.logo" alt="" />
             <p class="detail_title">{{$t('m.culture.vs')}}</p>
-            <p class="detail_">{{visionData.content}}</p>
+            <p class="detail_">{{visionData.details}}</p>
         </div>
         <div class="all_left">
-            <img class="core_img" :src="missionData.img" alt="" />
+            <img class="core_img" :src="missionData.logo" alt="" />
             <p class="detail_title">{{$t('m.culture.ms')}}</p>
-            <p class="detail_">{{missionData.content}}</p>
+            <p class="detail_">{{missionData.details}}</p>
         </div>
         <!-- 人才发展头部公共样式 -->
         <div class="all_top">
             {{$t('m.culture.td')}}
         </div>
         <div class="all_row">
-          {{talentData.content}}
+          {{talentData.details}}
         </div>
         <!-- 办公环境头部公共样式 -->
         <div class="all_top">
@@ -41,11 +41,11 @@
         </div>
         <!-- 公共左边样式 -->
         <div class="office_left">
-            <img class="office_img" :src="officeData.img" alt="" />
+            <img class="office_img" :src="officeData.logo" alt="" />
         </div>
         <!-- 公共右边样式 -->
         <div class="all_right">
-            <p class="detail_title">{{officeData.content}}</p>
+            <p class="detail_title">{{officeData.details}}</p>
         </div>
 
          <!-- 员工活动头部公共样式 -->
@@ -54,8 +54,8 @@
         </div>
         <!-- 公共模块样式 -->
         <div class="all_left" v-for="item in staffData">
-            <img class="core_img" :src="item.img" alt="" />
-            <p class="detail_">{{item.content}}</p>
+            <img class="core_img" :src="item.logo" alt="" />
+            <p class="detail_">{{item.details}}</p>
         </div>
         </div>
         <div class="clear"></div>
@@ -82,36 +82,21 @@ export default {
         name:'',
         id:3
       }],
+      lbt:[{images:''}],
       vision:'愿景',
       mission:'使命',
       titleEn:'Culture',
       langs:'zh',
-      visionData:{
-        img:'../../static/img/index4.png',
-        content:'苏州爱洛克信息技术有限公司成立于2012年，注册资本1051万。公司总部位于苏州市工业园区，分别在台湾新北、曼谷舍友驻地分公司，创始团队均来自Activision Blizzard等知名游戏公司，平均从业10年以上，有丰富的AAA级游戏制作经验和发行经验。团队曾在中国及全球AppStore, GooglePlay Store成功发行过多款Top 10游戏。'
-      },
-      missionData:{
-        img:'../../static/img/index4.png',
-        content:'苏州爱洛克信息技术有限公司成立于2012年，注册资本1051万。公司总部位于苏州市工业园区，分别在台湾新北、曼谷舍友驻地分公司，创始团队均来自Activision Blizzard等知名游戏公司，平均从业10年以上，有丰富的AAA级游戏制作经验和发行经验。团队曾在中国及全球AppStore, GooglePlay Store成功发行过多款Top 10游戏。'
-      },
-      talentData:{
-        content:'苏州爱洛克信息技术有限公司成立于2012年，注册资本1051万。公司总部位于苏州市工业园区，分别在台湾新北、曼谷舍友驻地分公司，创始团队均来自Activision Blizzard等知名游戏公司，平均从业10年以上，有丰富的AAA级游戏制作经验和发行经验。团队曾在中国及全球AppStore, GooglePlay Store成功发行过多款Top 10游戏。'
-      },
-      officeData:{
-        img:'../../static/img/office.png',
-        content:'苏州爱洛克信息技术有限公司成立于2012年，注册资本1051万。公司总部位于苏州市工业园区，分别在台湾新北、曼谷舍友驻地分公司，创始团队均来自Activision Blizzard等知名游戏公司，平均从业10年以上，有丰富的AAA级游戏制作经验和发行经验。团队曾在中国及全球AppStore, GooglePlay Store成功发行过多款Top 10游戏。'
-      },
-      staffData:[{
-        img:'../../static/img/staff.png',
-        content:'苏州爱洛克信息技术有限公司成立于2012年，注册资本1051万。公司总部位于苏州市工业园区，分别在台湾新北、曼谷舍友驻地分公司，创始团队均来自Activision Blizzard等知名游戏公司，平均从业10年以上，有丰富的AAA级游戏制作经验和发行经验。团队曾在中国及全球AppStore, GooglePlay Store成功发行过多款Top 10游戏。'
-      },{
-        img:'../../static/img/staff.png',
-        content:'苏州爱洛克信息技术有限公司成立于2012年，注册资本1051万。公司总部位于苏州市工业园区，分别在台湾新北、曼谷舍友驻地分公司，创始团队均来自Activision Blizzard等知名游戏公司，平均从业10年以上，有丰富的AAA级游戏制作经验和发行经验。团队曾在中国及全球AppStore, GooglePlay Store成功发行过多款Top 10游戏。'
-      }]
+      visionData:'',
+      missionData:'',
+      talentData:'',
+      officeData:'',
+      staffData:[]
     }
   },
   mounted:function(){ 
-    this.showList()
+    this.showList();
+    this.markPost(this.$i18n.locale)
   },
   updated:function(){
 
@@ -122,6 +107,48 @@ export default {
       this.navlist[1].name = this.$t('m.culture.cv');
       this.navlist[2].name = this.$t('m.culture.td');
       this.navlist[3].name = this.$t('m.culture.ea');
+    },
+    markPost(e){
+      var datas = {
+          lang:e
+      }
+      var datasTwo = {
+          lang:e,
+          img:3
+      }
+       this.getHttp(this,datasTwo,'/front/banner',function(obj,data){
+        obj.lbt= data;
+         //丢上服务器之后要删掉，仅测试开发
+         // for(var a in obj.lbt){
+         //     obj.lbt[a].images = obj.inser_src(obj.lbt[a].images);
+         // }
+      });
+      this.getHttp(this,datas,'/front/vision',function(obj,data){
+         obj.visionData = data;
+         //丢上服务器之后要删掉，仅测试开发
+         //obj.visionData.logo = obj.inser_src(obj.visionData.logo);
+      });
+      this.getHttp(this,datas,'/front/mission',function(obj,data){
+         obj.missionData = data;
+         //丢上服务器之后要删掉，仅测试开发
+         //obj.missionData.logo = obj.inser_src(obj.missionData.logo);
+      });
+      this.getHttp(this,datas,'/front/talents',function(obj,data){
+         obj.talentData = data;
+      });
+      this.getHttp(this,datas,'/front/office',function(obj,data){
+         obj.officeData = data;
+         //丢上服务器之后要删掉，仅测试开发
+         //obj.officeData.logo = obj.inser_src(obj.officeData.logo);
+      });
+      this.getHttp(this,datas,'/front/staff',function(obj,data){
+         obj.staffData = data;
+         //丢上服务器之后要删掉，仅测试开发
+         // for(var a in obj.staffData){
+         //     obj.staffData[a].logo = obj.inser_src(obj.staffData[a].logo);
+         // }
+      });
+     
     }
   },
   computed: {
@@ -132,7 +159,8 @@ export default {
   },
   watch:{
       getUserLangs(val) {
-         this.showList()
+         this.showList();
+         this.markPost(val)
       }
   }
 }
@@ -216,7 +244,9 @@ export default {
   font-size: 16px;
   color: #333;
   text-indent: 2em;
-  float: left
+  float: left;
+  max-width: 1000px;
+  word-break: break-all;
 }
 .all_left .office_img{
   width: 470px;
