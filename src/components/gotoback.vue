@@ -66,9 +66,8 @@ export default {
     transition: all .5s cubic-bezier(1.0, 0.3, 0.8, 1.0);
     opacity: 0;
   }
-  .slide-fade-enter, .slide-fade-leave-to
-   /* .slide-fade-leave-active 在低于 2.1.8 版本中 */ {
-  // transform: translateY(-20px);
+  .slide-fade-enter, .slide-fade-leave-to {
+   transform: translateY(-20px);
     opacity: 0;
   }
   .page-component-up {

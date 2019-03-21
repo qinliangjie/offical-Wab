@@ -124,12 +124,13 @@ export default {
          // }
       });
       this.getHttp(this,'','/front/indimg',function(obj,data){
+        obj.newimg=[];
         for(var a in data){
           //丢上服务器之后要删掉，仅测试开发
           // data[a].images = obj.inser_src(data[a].images);
-          // if(data[a].mark=='8'){
-          //   obj.newimg.push(data[a]);
-          // }
+           if(data[a].mark=='8'){
+             obj.newimg.push(data[a]);
+           }
         }
       });
     }
@@ -168,7 +169,9 @@ export default {
   margin-bottom: 31px
 }
 .article_left ul{
-  margin-top: 15px
+  margin-top: 15px;
+  max-height: 260px;
+  overflow: hidden;
 }
 .article_left ul li{
     width: 100%;
@@ -182,7 +185,7 @@ export default {
 .article_left ul li span:first-child {
     max-width: 480px;
 }
-.article_left ul li span:last-child {
+.article_left ul li span.fr{
     color: #999;
     font-size: 16px;
 }
@@ -235,5 +238,8 @@ export default {
 .topImg img{
   width: 100%;
   height:100%;
+}
+.deve_incident{
+  line-height: 32px
 }
 </style>

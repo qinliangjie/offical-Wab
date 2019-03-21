@@ -22,7 +22,7 @@
           <div class="item" v-for="item in newlist" :key="item.id">
               <span class="year">{{item.time}}</span>
               <ul>
-                <li v-for="news in item.details" :key="news.id" v-on:click="gotonew(item.id)">
+                <li v-for="news in item.details" :key="news.id" v-on:click="gotonew(news.id)">
                   <span class="news_name ellipsis-one">{{news.message_title}}</span>
                   <span class="news_time">{{news.uptime}}</span>
                   <div class="clear"></div>

@@ -11,18 +11,22 @@ import '../static/css/index.css'
 import BackTop from './components/gotoback'
 import NavLeft from './components/lifenav'
 
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
+Vue.use(VueAwesomeSwiper)
+
 /* vue配置 */
 Vue.config.debug = process.env.NODE_ENV !== 'production'
 Vue.config.productionTip = false
 
 /* axios配置 */
-axios.defaults.withCredentials = true
+//axios.defaults.withCredentials = true
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 Vue.prototype.$axios = axios
 
 var querystring = require('querystring');
 
-var baseUrl = "/" //接口前缀地址
+var baseUrl = "http://testadmin.www.iclockwork.com" //接口前缀地址
 /* 
  * 封装ajax
  * obj : 全局this

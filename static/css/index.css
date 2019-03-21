@@ -325,7 +325,8 @@ a:visited {
   font-size: 16px;
   color: #333;
   text-indent: 2em;
-  float: left
+  float: left;
+  line-height: 32px
 }
 .all_left .office_img{
   width: 470px;
@@ -334,3 +335,18 @@ a:visited {
 #map img{
   max-width: inherit !important;
 }
+.swiper-pagination-bullet {
+        width: 8px;
+        height: 8px;
+        border-radius: 20px;
+        background: #FFF;
+        opacity: .35;
+        filter: alpha(opacity=35);
+        -webkit-transition: width .4s ease-in;
+    }
+.swiper-pagination-bullet-active{
+width: 45px;
+    background: #FFF;
+    opacity: 1;
+    filter: alpha(opacity=100);
+    }

@@ -1,15 +1,20 @@
 <template>
   <div id="index" class="index_box">
     <div class="banner_wrap">
-      <div  class="swiper-container gallery-top swiper-container-horizontal">  
-        <div class="swiper-wrapper">  
-           <div v-for="value in lbt" class="swiper-slide swiper-slide-next" style="width: 100%; margin-right: 10px;background-size:100% 100%" v-bind:style="{backgroundImage: 'url(' + value.images + ')'}"></div>  
-        </div> 
-        <div class="swiper-pagination"></div>  
-    </div>   
+      <swiper :options="swiperOption">
+        <swiper-slide v-for="value in lbt">
+          <img :src="value.images" />
+        </swiper-slide>
+        <div class="swiper-pagination"  slot="pagination"></div>
+      </swiper>  
     </div>
     <div class="content">
-        <div class="fl companyImg" v-if="indimg.length==2">
+        <div class="fl companyImg" v-if="indimg.length==1">
+          <img v-bind:src="indimg[0].images" alt="" class="companyImgUp" />
+          <div class="markImg"></div>
+          <img v-bind:src="indimg[0].images" alt="" class="companyImgDown" />
+        </div>
+        <div class="fl companyImg" v-else-if="indimg.length==2">
           <img v-bind:src="indimg[0].images" alt="" class="companyImgUp" />
           <div class="markImg"></div>
           <img v-bind:src="indimg[1].images" alt="" class="companyImgDown" />
@@ -47,12 +52,29 @@
 </template>
 
 <script>
-import Swiper from 'swiper'
-import 'swiper/dist/css/swiper.min.css'
+import 'swiper/dist/css/swiper.css' 
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
+  components: {
+    swiper,
+    swiperSlide
+  },
   data () {
     return {
-      msg: '苏州爱洛克信息技术有限公司成立于2012年，注册资本1051万。公司总部位于苏州市工业园区，分别在台湾新北、曼谷舍友驻地分公司，创始团队均来自Activision Blizzard等知名游戏公司，平均从业10年以上，有丰富的AAA级游戏制作经验和发行经验。团队曾在中国及全球AppStore, GooglePlay Store成功发行过多款Top 10游戏。',
+      swiperOption: {
+        pagination:{
+          el:'.swiper-pagination',
+          clickable: true
+        },
+        slidesPerView: 1,
+        autoplay:{
+          delay:5000,
+          disableOnInteraction:false
+        },
+        observer:true,//修改swiper自己或子元素时，自动初始化swiper
+        observeParents:true//修改swiper的父元素时，自动初始化swiper
+      },
+      msg: '',
       notic:[],
       lbt: [  
       ],
@@ -62,8 +84,8 @@ export default {
     }
   },
   mounted:function(){
-    this.lunbo();
-    this.markPost(this.$i18n.locale)
+    
+    this.markPost(this.$i18n.locale);
   },
   updated:function(){
 
@@ -106,13 +128,9 @@ export default {
       });
       this.getHttp(this,datasTwo,'/front/banner',function(obj,data){
         obj.lbt = data;
-        console.log(obj.lbt.length)
-         //丢上服务器之后要删掉，仅测试开发
-         // for(var a in obj.lbt){
-         //     obj.lbt[a].images = obj.inser_src(obj.lbt[a].images);
-         // }
       });
       this.getHttp(this,'','/front/indimg',function(obj,data){
+        obj.indimg=[];obj.newimg=[];
         for(var a in data){
           //data[a].images = obj.inser_src(data[a].images);
           if(data[a].mark=='7'){
@@ -131,6 +149,14 @@ export default {
     overflow: hidden;
     height: 897px;
     margin-bottom: 60px;
+}
+.banner_wrap,.swiper-container{
+  width:100%;
+  height: 897px;
+}
+.banner_wrap,.swiper-container img{
+  width:100%;
+ height: 897px;
 }
 #index .content{
   width: 1200px;
@@ -199,6 +225,8 @@ export default {
   text-indent: 2em;
   margin-top: 41px;
   cursor: default;
+  height: 290px;
+  overflow: hidden;
 }
 .companyNew{
   width: 720px;
@@ -210,6 +238,7 @@ export default {
   width: 100%;
   margin-top: 24px;
   overflow: hidden;
+  height: 220px
 }
 .companyNew ul li{
   width: 100%;
@@ -223,7 +252,7 @@ export default {
 .companyNew ul li span:first-child{
   max-width: 580px;
 }
-.companyNew ul li span:last-child{
+.companyNew ul li span.fr{
   color: #999;
   font-size: 16px
 }

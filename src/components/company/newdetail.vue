@@ -156,23 +156,27 @@ export default {
   text-align: center;
   font-size: 24px;
   color: #333;
-  padding-top: 40px
+  padding-top: 40px;
+  width: 600px;
+  margin: 0 auto;
+  word-wrap: break-word;
 }
 #newdetail .content .airtcle .air_time{
   text-align: center;
   color: #999;
   font-size: 18px;
-  margin:16px 0 29px 0px;
+  width: 600px;
+  margin:16px auto 29px auto;
 }
 #newdetail .content .airtcle .share{
   position: absolute;
   right: 0;
   top:70px;
+  right: -20px
 }
 #newdetail .content .airtcle .air_detail{
   font-size: 16px;
   color: #333;
-  text-indent: 2em;
   margin-bottom: 100px;
   line-height: 32px
 }

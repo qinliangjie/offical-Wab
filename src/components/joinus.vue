@@ -23,8 +23,8 @@
           <table class="item_table">
             <tr>
               <th>{{$t('m.joinus.ji')}}</th>
-              <th>{{$t('m.joinus.ed')}}</th>
-              <th>{{$t('m.joinus.ex')}}</th>
+              <th width="300px">{{$t('m.joinus.ed')}}</th>
+              <th width="450px">{{$t('m.joinus.ex')}}</th>
               <th>{{$t('m.joinus.de')}}</th>
             </tr>
             <tbody>
@@ -214,14 +214,16 @@ export default {
   margin:15px auto;
 }
 .item_tab span{
-  display: inline-block;
-  width:58px;
-  height: 24px;
-  text-align: center;
-  line-height: 24px;
-  color: #333;
-  margin-right: 10px;
-  cursor: default;
+    display: inline-block;
+    min-width: 58px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    color: #333;
+    margin-right: 10px;
+    cursor: default;
+    padding: 0 5px;
+    margin-bottom: 10px
 }
 .item_tab span.active{
   background-color: #f08200;
@@ -246,7 +248,8 @@ export default {
   border-bottom: 1px solid #dcdcdc;
   font-size: 16px;
   color: #333;
-  line-height: 60px
+      padding-top: 20px;
+    padding-bottom: 20px;
 }
 .map{
   margin:15px auto 30px auto;

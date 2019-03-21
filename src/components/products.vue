@@ -139,7 +139,8 @@ export default {
   min-height: 100px;
   font-size: 16px;
   color: #333;
-  text-indent: 2em
+  text-indent: 2em;
+  line-height: 32px
 }
 .content .item .itemDom .itemA{
   display: block;

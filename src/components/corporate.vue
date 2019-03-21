@@ -55,6 +55,7 @@
         <!-- 公共模块样式 -->
         <div class="all_left" v-for="item in staffData">
             <img class="core_img" :src="item.logo" alt="" />
+            <p class="detail_title">{{item.title}}</p>
             <p class="detail_">{{item.details}}</p>
         </div>
         </div>
@@ -103,9 +104,9 @@ export default {
   },
   methods:{ 
     showList:function(){
-      this.navlist[0].name = this.$t('m.culture.cu');
-      this.navlist[1].name = this.$t('m.culture.cv');
-      this.navlist[2].name = this.$t('m.culture.td');
+      this.navlist[0].name = this.$t('m.culture.cv');
+      this.navlist[1].name = this.$t('m.culture.td');
+      this.navlist[2].name = this.$t('m.culture.we');
       this.navlist[3].name = this.$t('m.culture.ea');
     },
     markPost(e){
@@ -212,7 +213,8 @@ export default {
   width: 471px; 
 }
 .all_right p{
-  text-indent: 2em
+  text-indent: 2em;
+  line-height: 32px
 }
 .all_left:nth-child(even){
   margin-right: 0px
@@ -231,7 +233,9 @@ export default {
     font-size: 16px;
     color: #333;
     margin-top: 15px;
-    max-height: 166px
+    max-height: 166px;
+    overflow: hidden;
+    line-height: 32px
 }
 .office_left{
   margin-right: 40px;

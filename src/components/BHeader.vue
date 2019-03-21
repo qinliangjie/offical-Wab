@@ -64,6 +64,7 @@ export default {
 .head_wrap {
     width: 100%;
     position: fixed;
+    top: 0;
     left: 0;
     z-index: 9999;
     height: 100px;

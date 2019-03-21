@@ -34,20 +34,6 @@ body{
 a:active, a:hover, a:link, a:visited {
     outline: 0;
 }
-.swiper-pagination-bullet {
-        width: 8px;
-        height: 8px;
-        border-radius: 20px;
-        background: #FFF;
-        opacity: .35;
-        filter: alpha(opacity=35);
-        -webkit-transition: width .4s ease-in;
-    }
-.swiper-pagination-bullet-active{
-width: 45px;
-    background: #FFF;
-    opacity: 1;
-    filter: alpha(opacity=100);
-    }
+
 </style>
  

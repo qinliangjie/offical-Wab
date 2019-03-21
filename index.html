@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="static/img/bitbug_favicon.ico">
-    <script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=ueIq0ltF2bWRkHMsQi848Gjbcb7iCKby&services=&t=20180621094426"></script>
+    <script type="text/javascript" src="https://api.map.baidu.com/getscript?v=2.0&ak=ueIq0ltF2bWRkHMsQi848Gjbcb7iCKby&services=&t=20180621094426&s=1"></script>
     <script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js?publisher=5899e9df-0026-43e6-8a6c-cb461a799f5e"></script>
     <title>苏州爱洛克信息技术有限公司</title>
   </head>
@@ -12,5 +12,25 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
+  <script>
+    function isMoblie() {
+    var regex_match = /(nokia|iphone|android|motorola|^mot-|softbank|foma|docomo|kddi|up.browser|up.link|htc|dopod|blazer|netfront|helio|hosin|huawei|novarra|CoolPad|webos|techfaith|palmsource|blackberry|alcatel|amoi|ktouch|nexian|samsung|^sam-|s[cg]h|^lge|ericsson|philips|sagem|wellcom|bunjalloo|maui|symbian|smartphone|midp|wap|phone|windows ce|iemobile|^spice|^bird|^zte-|longcos|pantech|gionee|^sie-|portalmmm|jigs browser|hiptop|^benq|haier|^lct|operas*mobi|opera*mini|320x320|240x320|176x220)/i;
+    var u = navigator.userAgent;
+    if (null == u) {
+        return true;
+    }
+    var result = regex_match.exec(u);
 
+    if (null == result) {
+        return false
+    } else {
+        return true
+    }
+}
+if(isMoblie()){
+  window.location.href="http://www.baidu.com";
+}else{
+  document.body.style.display='block';
+}
+  </script>
 </html>
