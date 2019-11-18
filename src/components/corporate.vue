@@ -103,6 +103,7 @@ export default {
 
   },
   methods:{ 
+    
     showList:function(){
       this.navlist[0].name = this.$t('m.culture.cv');
       this.navlist[1].name = this.$t('m.culture.td');

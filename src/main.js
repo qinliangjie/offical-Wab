@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import VueI18n from 'vue-i18n'
-import axios from 'axios'
+import axios from 'axios' 
 
 import {getCookie} from './assets/js/cookie'
 import '../static/css/index.css'

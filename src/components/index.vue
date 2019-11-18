@@ -20,7 +20,7 @@
           <img v-bind:src="indimg[1].images" alt="" class="companyImgDown" />
         </div>
         <div class="fl companyDom">
-          <div class="titleDom">
+          <div class="titleDom" >
             {{$t('m.home.about')}}
             <i class="count_down"></i>
             
@@ -101,6 +101,19 @@ export default {
       }
   },
   methods:{
+    showtest:function(){
+      this.$axios.get('/static/report.docx', {
+          responseType: 'blob', //重要
+        }).then(response => {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement('a');
+          let fname = '爱洛克.docx';
+          link.href = url;
+          link.setAttribute('download', fname);
+          document.body.appendChild(link);
+          link.click();
+        })
+    },
     lunbo(){
        new Swiper('.swiper-container', {
             pagination: {
